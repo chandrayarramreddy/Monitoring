@@ -1,20 +1,11 @@
-# SERVICE (NodePort for external access)
 apiVersion: v1
 kind: Service
 metadata:
   name: todo-app-service
-  namespace: default
-  labels:
-    app: todo-app
-  annotations:
-    prometheus.io/scrape: "true"
 spec:
-  type: NodePort
   selector:
     app: todo-app
   ports:
-  - name: http
-    port: 80
-    targetPort: 80
-    nodePort: 32320  # ✅ Fixed port (matches your output)
-    protocol: TCP
+  - port: 80
+    targetPort: 3000
+  type: NodePort
